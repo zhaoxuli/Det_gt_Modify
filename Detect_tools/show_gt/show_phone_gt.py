@@ -3,7 +3,7 @@ import os
 import json
 import copy
 
-js_path = './sample_data/Anno_new/11474.json'
+js_path = './output_phone/Anno/11526.json'
 
 def read_info(js_path ):
     tag = 'norm'
@@ -16,7 +16,7 @@ def read_info(js_path ):
     else:
         print js_path  ,'is  uncertain'
         return
-    img_path = data_path +os.sep +name
+    img_path = data_path +os.sep +'Image' +os.sep +name
     context = open(js_path,'r').readlines()
     context_var = copy.deepcopy(context)
     count = 0
@@ -52,6 +52,7 @@ def read_info(js_path ):
                 print 'saving the json...'
                 pyctx_line = json.loads(context_var[count_new])
                 pyctx_line["common_box"][0]['data'] = points_new
+                print pyctx_line
                 new_js = open(js_path,'w')
                 context_var[count_new] = json.dumps(pyctx_line)+'\n'
                 for line in context_var:
